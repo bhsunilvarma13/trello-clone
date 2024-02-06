@@ -1,7 +1,10 @@
+"use client";
+import { useParams } from "next/navigation";
 import React from "react";
 
-function OrganizationPage() {
-  return <div>Hello</div>;
+function OrganizationIdPage() {
+  const params = useParams();
+  return <div>Organization Page: {params.organizationId}</div>;
 }
 
-export default OrganizationPage;
+export default OrganizationIdPage;

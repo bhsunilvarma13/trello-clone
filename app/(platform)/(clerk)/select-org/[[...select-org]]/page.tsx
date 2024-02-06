@@ -1,11 +1,14 @@
 import { OrganizationList } from "@clerk/nextjs";
+import React from "react";
 
-export default function CreateOrganizationPage() {
+function SelectOrgPage() {
   return (
     <OrganizationList
       hidePersonal
-      afterCreateOrganizationUrl="/organization/:id"
+      afterCreateOrganizationUrl="/orgnanization/:id"
       afterSelectOrganizationUrl="/organization/:id"
     />
   );
 }
+
+export default SelectOrgPage;

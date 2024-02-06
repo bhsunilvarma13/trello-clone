@@ -5,7 +5,8 @@ import { Plus } from "lucide-react";
 
 export const Navbar = () => {
   return (
-    <nav className="px-4 fixed top-0 z-50 w-full h-14 border-b shadow-sm bg-white flex items-center">
+    <nav className="fixed top-0 z-50 bg-white border-b shadow-sm w-full h-14 flex items-center px-4">
+      {/* TODO: Mobile Sidebar */}
       <div className="flex items-center gap-x-4">
         <div className="hidden md:flex">
           <Logo />
@@ -13,15 +14,14 @@ export const Navbar = () => {
         <Button
           size="sm"
           variant="primary"
-          className="rounded-sm font-normal hidden md:flex items-center justify-center h-auto py-1.5 px-2"
+          className="hidden md:block rounded-sm h-auto py-1.5 px-2"
         >
-          <Plus className="h-4 w-4 mr-1" />
           Create
         </Button>
         <Button
-          variant="primary"
           size="sm"
-          className="rounded-sm block md:hidden"
+          variant="primary"
+          className="rounded-sm  block md:hidden"
         >
           <Plus className="h-4 w-4" />
         </Button>
