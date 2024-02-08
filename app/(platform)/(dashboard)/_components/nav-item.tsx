@@ -78,6 +78,7 @@ export const NavItem = ({
               src={organization.imageUrl ? organization.imageUrl : "/logo.svg"}
               alt="Organization"
               fill
+              sizes="auto"
               className="rounded-sm object-cover"
             />
           </div>
