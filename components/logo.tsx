@@ -18,7 +18,6 @@ export const Logo = () => {
           alt="Logo"
           height={30}
           width={30}
-          style={{ width: "auto", height: "auto" }}
         />
         <p
           className={cn("text-lg text-neutral-700 pb-1", headingFont.className)}
