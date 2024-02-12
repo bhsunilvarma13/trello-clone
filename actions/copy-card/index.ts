@@ -1,11 +1,15 @@
 "use server";
 
 import { auth } from "@clerk/nextjs";
-import { InputType, ReturnType } from "./types";
-import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { Action, Entity_Type } from "@prisma/client";
+
+import { db } from "@/lib/db";
+import { createAuditLog } from "@/lib/create-audit-log";
 import { createSafeAction } from "@/lib/create-safe-action";
+
 import { CopyCardSchema } from "./schema";
+import { InputType, ReturnType } from "./types";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
@@ -17,7 +21,6 @@ const handler = async (data: InputType): Promise<ReturnType> => {
   }
 
   const { id, boardId } = data;
-
   let card;
 
   try {
@@ -46,19 +49,26 @@ const handler = async (data: InputType): Promise<ReturnType> => {
 
     card = await db.card.create({
       data: {
-        title: `${cardToCopy.title} (Copy)`,
-        order: newOrder,
+        title: `${cardToCopy.title} - Copy`,
         description: cardToCopy.description,
+        order: newOrder,
         listId: cardToCopy.listId,
       },
     });
+
+    await createAuditLog({
+      entityTitle: card.title,
+      entityId: card.id,
+      entityType: Entity_Type.CARD,
+      action: Action.CREATE,
+    });
   } catch (error) {
     return {
-      error: "Failed to copy card",
+      error: "Failed to copy.",
     };
   }
 
-  revalidatePath(`/boards/${boardId}`);
+  revalidatePath(`/board/${boardId}`);
   return { data: card };
 };
 
