@@ -52,7 +52,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
           className="w-full rounded-none h-auto p-2 px-1.5 justify-start font-normal text-sm"
           variant="ghost"
         >
-          Delete this button
+          Delete this board
         </Button>
       </PopoverContent>
     </Popover>
